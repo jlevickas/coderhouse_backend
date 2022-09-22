@@ -1,0 +1,44 @@
+[
+  {
+    "title": "otro producto mass",
+    "price": 1400,
+    "thumbnail": "imagen2.jpg",
+    "id": 1
+  },
+  {
+    "title": "productaaaaaaaso",
+    "price": 100,
+    "thumbnail": "imagen2.jpg",
+    "id": 2
+  },
+  {
+    "title": "productaaaaaaasosas",
+    "price": 100,
+    "thumbnail": "imagen2.jpg",
+    "id": 3
+  },
+  {
+    "title": "productaaaaaaasosasdasdas",
+    "price": 100,
+    "thumbnail": "imagen2.jpg",
+    "id": 4
+  },
+  {
+    "title": "pasdsad",
+    "price": 100,
+    "thumbnail": "imagen2.jpg",
+    "id": 5
+  },
+  {
+    "title": "pasdasdasdasad",
+    "price": 100,
+    "thumbnail": "imagen2.jpg",
+    "id": 6
+  },
+  {
+    "producto": "Producto",
+    "precio": "3",
+    "imagen": "",
+    "id": 7
+  }
+]

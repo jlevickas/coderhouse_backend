@@ -29,10 +29,18 @@ class Contenedor {
   async save(elemento) {
     try {
       const array = await this.#leerArchivo(this.archivo);
+      let id = 1;
+
+      //chequeo si el id ya esta en uso
+      const idExists = (id) => {
+        return Object.values(array).some((el) => el.id === id);
+      };
 
       if (array) {
-        // uso el largo del array para asignar el id del elemento nuevo
-        const id = array.length + 1;
+        while (idExists(id)) {
+          console.log(id);
+          id++;
+        }
         elemento.id = id;
 
         // agrego el elemento nuevo al array y escribo el archivo
@@ -42,7 +50,7 @@ class Contenedor {
         // si el archivo NO existe, agrego el elemento nuevo a un array vacio y le asigno el id 1
       } else {
         const array = [];
-        const id = 1;
+
         elemento.id = id;
         array.push(elemento);
         this.#escribirArchivo(array);
@@ -57,7 +65,7 @@ class Contenedor {
     // leo el archivo, lo parseo y uso .find para buscar el elemento con el id del parametro
     try {
       const array = await this.#leerArchivo(this.archivo);
-      const elemento = array.find((elemento) => elemento.id === id);
+      const elemento = await array.find((el) => el.id === id);
 
       return elemento;
     } catch (error) {
@@ -92,16 +100,18 @@ class Contenedor {
       console.log(error);
     }
   }
+
+  async getLastId() {
+    try {
+      const array = await this.#leerArchivo(this.archivo);
+      const lastId = array[Object.keys(array).pop()].id;
+      return lastId;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
-const contenedor = new Contenedor("productos.txt");
+const productos = new Contenedor("productos.txt");
 
-/* contenedor.save({
-  title: "otro producto",
-  price: 100,
-  thumbnail: "imagen2.jpg",
-}); */
-
-contenedor.getById(1).then((elemento) => console.log(elemento));
-
-//contenedor.deleteAll();
+module.exports = productos;
