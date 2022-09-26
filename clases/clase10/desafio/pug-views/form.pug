@@ -1,0 +1,7 @@
+extends index 
+block form
+    form(action="/productos", method="post")
+        input(type="text", name="producto", id="producto" placeholder="Producto")
+        input(type="number", name="precio", id="precio" placeholder="Precio")
+        input(type="text", name="imagen", id="imagen" placeholder="URL de imagen")
+        button(type="submit") Enviar 

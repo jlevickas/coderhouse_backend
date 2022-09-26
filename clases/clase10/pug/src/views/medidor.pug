@@ -1,0 +1,6 @@
+extends layout
+block medidor
+    h1(style="color:blue") #{title}
+    span #{min}
+    meter(min=min, max=max, value=value)
+    span #{max}

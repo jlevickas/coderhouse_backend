@@ -1,0 +1,26 @@
+[
+  {
+    "producto": "lapiz",
+    "precio": "23",
+    "imagen": "https://cdn4.iconfinder.com/data/icons/to-cool-for-school/512/pencil-512.png",
+    "id": 2
+  },
+  {
+    "producto": "cuaderno",
+    "precio": "200",
+    "imagen": "https://cdn4.iconfinder.com/data/icons/to-cool-for-school/512/notebook-2-512.png",
+    "id": 1
+  },
+  {
+    "producto": "Tijera",
+    "precio": "200",
+    "imagen": "",
+    "id": 3
+  },
+  {
+    "producto": "Mochila",
+    "precio": "10000",
+    "imagen": "https://cdn4.iconfinder.com/data/icons/to-cool-for-school/512/backpack-512.png",
+    "id": 4
+  }
+]

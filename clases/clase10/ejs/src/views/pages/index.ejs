@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/head") %>
+<body>
+    <%- include("../partials/header") %>
+
+   <h2>Ingresar datos</h2>
+        <%- include("../partials/formulario") %>
+   <h2>Historial</h2>
+    <% if (personas.length !== 0) { %>
+        <%- include("../partials/tabla") %>
+    <% } else { %>
+        <h2>No se encontraron datos</h2>
+    <% } %>
+    <%- include("../partials/footer") %>
+</body>
+</html>

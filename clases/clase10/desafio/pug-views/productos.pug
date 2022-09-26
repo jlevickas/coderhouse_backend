@@ -1,0 +1,19 @@
+extends index 
+block productos 
+    h1 Productos
+    if productos.length > 0
+        table 
+            thead
+                tr
+                    th Nombre
+                    th Precio
+                    th Foto
+            tbody
+                each producto in productos
+                    tr
+                        td= producto.producto
+                        td= producto.precio
+                        td
+                            img(src=producto.imagen, width="20", height="20")
+    else
+        p No hay productos
