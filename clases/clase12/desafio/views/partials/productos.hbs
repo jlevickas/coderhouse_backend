@@ -1,0 +1,16 @@
+<h1>Productos</h1>
+<div>
+  {{#if hayProductos}}
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Imagen</th>
+      </tr>
+      <tbody id="productos">
+      </tbody>
+    </table>
+  {{else}}
+    <p>No hay productos</p>
+  {{/if}}
+</div>

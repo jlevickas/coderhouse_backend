@@ -1,0 +1,17 @@
+<h1>Centro de Mensajes</h1>
+<div>
+  {{#if hayMensajes}}
+    <div id="mensajes">
+
+    </div>
+  {{else}}
+    <p>No hay mensajes</p>
+  {{/if}}
+
+  <form onsubmit="return addMessage(this)">
+    <input type="email" name="email" id="email" placeholder="Email" required />
+    <input type="text" name="mensaje" id="mensaje" placeholder="mensaje" />
+    <input type="submit" value="Enviar" />
+  </form>
+
+</div>

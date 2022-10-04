@@ -1,0 +1,38 @@
+[
+  {
+    "email": "juan.levickas@gmail.com",
+    "mensaje": "hola",
+    "id": 1,
+    "date": "4/10/2022 13:22:26"
+  },
+  {
+    "email": "juan.levickas@gmail.com",
+    "mensaje": "hola3",
+    "id": 2,
+    "date": "4/10/2022 13:22:44"
+  },
+  {
+    "email": "ejemplo@gmail.com",
+    "mensaje": "Hola soy un ejemplo",
+    "id": 3,
+    "date": "4/10/2022 13:34:15"
+  },
+  {
+    "email": "ejemplo2@gmail.com",
+    "mensaje": "Hola soy otro ejemplo",
+    "id": 4,
+    "date": "4/10/2022 13:35:15"
+  },
+  {
+    "email": "ejmplo@ej.com",
+    "mensaje": "Hola soy otro ejemplo mas",
+    "id": 5,
+    "date": "4/10/2022 13:35:45"
+  },
+  {
+    "email": "mas@ejemplos.com",
+    "mensaje": "mensaje mensaje",
+    "id": 6,
+    "date": "4/10/2022 13:36:00"
+  }
+]
