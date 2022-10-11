@@ -28,33 +28,25 @@ module.exports = class Contenedor {
 
   async save(elemento) {
     try {
-      const array = await this.#leerArchivo(this.archivo);
+      const array = (await this.#leerArchivo(this.archivo)) || [];
       let id = 1;
+      elemento = { timestamp: Date.now(), ...elemento };
 
-      //chequeo si el id ya esta en uso
+      // busco el primer id que no este en uso
       const idExists = (id) => {
         return Object.values(array).some((el) => el.id === id);
       };
 
-      if (array) {
+      if (array.length > 0) {
         while (idExists(id)) {
           id++;
         }
-        elemento.id = id;
-
-        // agrego el elemento nuevo al array y escribo el archivo
-        array.push(elemento);
-        this.#escribirArchivo(array);
-
-        // si el archivo NO existe, agrego el elemento nuevo a un array vacio y le asigno el id 1
-      } else {
-        const array = [];
-
-        elemento.id = id;
-        array.push(elemento);
-        this.#escribirArchivo(array);
       }
-      return elemento.id;
+
+      array.push({ id: id, ...elemento });
+      this.#escribirArchivo(array);
+
+      return id;
     } catch (error) {
       console.log(error);
     }

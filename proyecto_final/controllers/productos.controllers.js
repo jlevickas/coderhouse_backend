@@ -3,9 +3,10 @@ const Productos = new contenedor("txt/productos.txt");
 
 const listarProductos = async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = parseInt(req.params.id);
     if (id) {
       const producto = await Productos.getById(id);
+      console.log(producto);
       if (producto) {
         res.json(producto);
       } else {
@@ -26,7 +27,14 @@ const listarProductos = async (req, res) => {
 
 const agregarProducto = async (req, res) => {
   try {
-    const producto = req.body;
+    const producto = {
+      nombre: req.body.nombre || "",
+      descripcion: req.body.descripcion || "",
+      codigo: req.body.codigo || "",
+      imagen: req.body.imagen || "",
+      precio: req.body.precio || 0,
+      stock: req.body.stock || false,
+    };
     const id = await Productos.save(producto);
     res.json({ id: id });
   } catch (error) {

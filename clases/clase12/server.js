@@ -19,20 +19,16 @@ const messageArray = [
   },
 ];
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
 httpServer.listen(4000, () => {
   console.log("listening on http://localhost:4000");
 });
 
 io.on("connection", (client) => {
   console.log("Un cliente se conecto");
-  client.emit("mensajes", messageArray);
+  client.emit("messages", messageArray);
 
   client.on("new-message", (mensaje) => {
     messageArray.push(mensaje);
-    io.sockets.emit("mensajes", messageArray);
+    io.sockets.emit("messages", messageArray);
   });
 });
