@@ -1,12 +1,12 @@
 const contenedor = require("../contenedor");
-const Productos = new contenedor("txt/productos.txt");
+const Productos = new contenedor("db/productos.txt");
 
 const listarProductos = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
     if (id) {
       const producto = await Productos.getById(id);
-      console.log(producto);
+
       if (producto) {
         res.json(producto);
       } else {
@@ -52,8 +52,12 @@ const actualizarProducto = async (req, res) => {
       const productoActualizado = req.body;
 
       productoActualizado.id = productoDesactualizado.id;
-      contenedor.deleteById(productoDesactualizado.id);
-      contenedor.save(productoActualizado);
+      await Productos.deleteById(productoDesactualizado.id);
+      Productos.save(productoActualizado);
+
+      res.json({
+        msg: `Producto con id ${productoActualizado.id} actualizado`,
+      });
     } else {
       res.status(404).json({ error: "Producto no encontrado" });
     }

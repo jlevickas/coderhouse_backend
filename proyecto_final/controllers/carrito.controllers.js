@@ -1,5 +1,6 @@
 const contenedor = require("../contenedor");
-const Carrito = new contenedor("txt/carrito.txt");
+const Carrito = new contenedor("db/carrito.txt");
+const Productos = new contenedor("db/productos.txt");
 
 const crearCarrito = async (req, res) => {
   try {
@@ -31,7 +32,11 @@ const listarProductosEnCarrito = async (req, res) => {
   try {
     const carrito = await Carrito.getById(parseInt(req.params.id));
     if (carrito) {
-      res.json(carrito.productos);
+      if (carrito.productos.length > 0) {
+        res.json(carrito.productos);
+      } else {
+        res.json({ msg: "Carrito vacío" });
+      }
     } else {
       res.status(404).json({ error: "Carrito no encontrado" });
     }
@@ -42,14 +47,21 @@ const listarProductosEnCarrito = async (req, res) => {
 
 const agregarProductoAlCarrito = async (req, res) => {
   try {
-    const carrito = await Carrito.getById(parseInt(req.params.id));
-    if (carrito) {
-      const producto = req.body;
-      carrito.productos.push(producto);
+    const carritoElegido = await Carrito.getById(parseInt(req.params.id));
+    if (carritoElegido) {
+      const idProducto = await parseInt(req.params.id_prod);
+      const producto = await Productos.getById(idProducto);
 
-      Carrito.deleteById(carrito.id);
-      Carrito.save(carrito);
-      res.json({ msg: "Producto agregado al carrito" });
+      if (producto) {
+        carritoElegido.productos.push(producto);
+        await Carrito.deleteById(carritoElegido.id);
+        Carrito.save(carritoElegido);
+        res.json({ msg: "Producto agregado al carrito" });
+      } else {
+        res
+          .status(404)
+          .json({ error: `Producto con id ${idProducto} no encontrado` });
+      }
     } else {
       res.status(404).json({ error: "Carrito no encontrado" });
     }
@@ -63,7 +75,7 @@ const eliminarProductoDelCarrito = async (req, res) => {
     const carrito = await Carrito.getById(parseInt(req.params.id));
     // chequeo si el carrito existe
     if (carrito) {
-      const idProductoAEliminar = req.params.id_prod;
+      const idProductoAEliminar = parseInt(req.params.id_prod);
       // chequeo si el producto a eliminar existe en el carrito. si existe, lo filtro
       if (
         carrito.productos.find(
@@ -73,7 +85,7 @@ const eliminarProductoDelCarrito = async (req, res) => {
         carrito.productos = carrito.productos.filter(
           (producto) => producto.id !== idProductoAEliminar
         );
-        Carrito.deleteById(carrito.id);
+        await Carrito.deleteById(carrito.id);
         Carrito.save(carrito);
         res.json({ msg: "Producto eliminado del carrito" });
       } else {
