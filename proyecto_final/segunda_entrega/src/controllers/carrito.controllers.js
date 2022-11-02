@@ -98,7 +98,7 @@ const eliminarProductoDelCarrito = async (req, res) => {
   }
 };
 
-export default {
+export {
   crearCarrito,
   eliminarCarrito,
   listarProductosEnCarrito,

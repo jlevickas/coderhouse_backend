@@ -1,10 +1,9 @@
-import { dataBase as _dataBase } from "../../../config/config.js";
+import { dataBase } from "../../../config/config.js";
 import MongoProductosDao from "./mongoDB/ProductosDao.js";
 import FirebaseProductosDao from "./firebase/ProductosDao.js";
 import MysqlProductosDao from "./mysql/ProductosDao.js";
 import FsProductosDao from "./fs/ProductosDao.js";
 
-let dataBase = _dataBase;
 let producto;
 
 switch (dataBase) {

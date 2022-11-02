@@ -1,4 +1,5 @@
-import { connection } from "mongoose";
+import mongoose from "mongoose";
+const connection = mongoose.connection;
 
 export default class ContainerDao {
   constructor(collection) {
