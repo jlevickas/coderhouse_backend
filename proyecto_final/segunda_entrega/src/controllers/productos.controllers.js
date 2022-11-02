@@ -1,4 +1,4 @@
-const Productos = require("../models/daos/ProductosDao");
+import Productos from "../models/daos/ProductosDao.js";
 
 const listarProductos = async (req, res) => {
   try {
@@ -79,7 +79,7 @@ const eliminarProducto = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   listarProductos,
   agregarProducto,
   actualizarProducto,

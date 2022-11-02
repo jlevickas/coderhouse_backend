@@ -1,10 +1,10 @@
-const config = require("../../../config/config");
-const MongoProductosDao = require("./mongoDB/ProductosDao");
-const FirebaseProductosDao = require("./firebase/ProductosDao");
-const MysqlProductosDao = require("./mysql/ProductosDao");
-const FsProductosDao = require("./fs/ProductosDao");
+import { dataBase as _dataBase } from "../../../config/config.js";
+import MongoProductosDao from "./mongoDB/ProductosDao.js";
+import FirebaseProductosDao from "./firebase/ProductosDao.js";
+import MysqlProductosDao from "./mysql/ProductosDao.js";
+import FsProductosDao from "./fs/ProductosDao.js";
 
-let dataBase = config.dataBase;
+let dataBase = _dataBase;
 let producto;
 
 switch (dataBase) {
@@ -25,4 +25,4 @@ switch (dataBase) {
     break;
 }
 
-module.exports = producto;
+export default producto;

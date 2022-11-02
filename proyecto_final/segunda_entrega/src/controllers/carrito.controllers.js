@@ -1,5 +1,5 @@
-const Carrito = require("../models/daos/CarritosDao");
-const Productos = require("../models/daos/ProductosDao");
+import carrito from "../models/daos/CarritosDao.js";
+import Productos from "../models/daos/ProductosDao.js";
 
 const crearCarrito = async (req, res) => {
   try {
@@ -98,7 +98,7 @@ const eliminarProductoDelCarrito = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   crearCarrito,
   eliminarCarrito,
   listarProductosEnCarrito,

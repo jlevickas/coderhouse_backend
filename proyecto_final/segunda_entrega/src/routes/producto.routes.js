@@ -1,11 +1,11 @@
-const express = require("express");
-const Router = express.Router;
-const {
+import { Router as _Router } from "express";
+const Router = _Router;
+import {
   listarProductos,
   agregarProducto,
   actualizarProducto,
   eliminarProducto,
-} = require("../controllers/productos.controllers");
+} from "../controllers/productos.controllers.js";
 
 const productosRouter = new Router();
 
@@ -26,4 +26,4 @@ productosRouter.post("/", adminAuthMiddleware, agregarProducto);
 productosRouter.put("/:id", adminAuthMiddleware, actualizarProducto);
 productosRouter.delete("/:id", adminAuthMiddleware, eliminarProducto);
 
-module.exports = productosRouter;
+export default productosRouter;

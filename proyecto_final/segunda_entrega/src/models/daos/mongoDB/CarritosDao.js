@@ -1,7 +1,7 @@
-const ContainerDao = require("./ContainerDao");
+import ContainerDao from "./ContainerDao.js";
 
-module.exports = class CarritosDao extends ContainerDao {
+export default class CarritosDao extends ContainerDao {
   constructor() {
     super("carritos");
   }
-};
+}

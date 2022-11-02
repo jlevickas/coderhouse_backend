@@ -1,12 +1,12 @@
-const express = require("express");
-const Router = express.Router;
-const {
+import { Router as _Router } from "express";
+const Router = _Router;
+import {
   crearCarrito,
   eliminarCarrito,
   listarProductosEnCarrito,
   agregarProductoAlCarrito,
   eliminarProductoDelCarrito,
-} = require("../controllers/carrito.controllers");
+} from "../controllers/carrito.controllers.js";
 
 const carritoRouter = new Router();
 
@@ -16,4 +16,4 @@ carritoRouter.get("/:id/productos", listarProductosEnCarrito);
 carritoRouter.post("/:id/productos/:id_prod", agregarProductoAlCarrito);
 carritoRouter.delete("/:id/productos/:id_prod", eliminarProductoDelCarrito);
 
-module.exports = carritoRouter;
+export default carritoRouter;

@@ -1,10 +1,10 @@
-const config = require("../../../config/config");
-const MongoCarritosDao = require("./mongoDB/CarritosDao");
-const FirebaseCarritosDao = require("./firebase/CarritosDao");
-const MysqlCarritosDao = require("./mysql/CarritosDao");
-const FsCarritosDao = require("./fs/CarritosDao");
+import { dataBase as _dataBase } from "../../../config/config.js";
+import MongoCarritosDao from "./mongoDB/CarritosDao.js";
+import FirebaseCarritosDao from "./firebase/CarritosDao.js";
+import MysqlCarritosDao from "./mysql/CarritosDao.js";
+import FsCarritosDao from "./fs/CarritosDao.js";
 
-let dataBase = config.dataBase;
+let dataBase = _dataBase;
 let carrito;
 
 switch (dataBase) {
@@ -25,4 +25,4 @@ switch (dataBase) {
     break;
 }
 
-module.exports = carrito;
+export default carrito;

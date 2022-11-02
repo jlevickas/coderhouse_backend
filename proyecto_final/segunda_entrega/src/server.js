@@ -1,12 +1,12 @@
-const express = require("express");
-const productosRouter = require("./routes/producto.routes");
-const carritoRouter = require("./routes/carrito.routes");
-const PORT = require("../config/config").PORT;
+import express, { json, urlencoded } from "express";
+import productosRouter from "./routes/producto.routes.js";
+import carritoRouter from "./routes/carrito.routes.js";
+import { PORT } from "../config/config.js";
 
 const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(json());
+app.use(urlencoded({ extended: true }));
 
 app.use("/api/productos", productosRouter);
 app.use("/api/carrito", carritoRouter);

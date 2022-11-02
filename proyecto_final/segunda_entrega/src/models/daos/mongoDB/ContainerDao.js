@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+import { connection } from "mongoose";
 
-module.exports = class ContainerDao {
+export default class ContainerDao {
   constructor(collection) {
     this.collectionName = collection;
-    this.collection = mongoose.connection.collection(collection);
+    this.collection = connection.collection(collection);
   }
 
   async get(id) {
@@ -78,4 +78,4 @@ module.exports = class ContainerDao {
       return null;
     }
   }
-};
+}

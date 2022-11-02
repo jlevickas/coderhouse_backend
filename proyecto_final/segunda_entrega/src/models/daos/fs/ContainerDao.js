@@ -1,6 +1,6 @@
-const fs = require("fs");
+import { promises as fs } from "fs";
 
-module.exports = class Contenedor {
+export default class Contenedor {
   constructor(archivo) {
     this.archivo = archivo;
   }
@@ -8,7 +8,7 @@ module.exports = class Contenedor {
   async #leerArchivo() {
     // creo un metodo privado para leer el archivo
     try {
-      const archLeido = await fs.promises.readFile(this.archivo, "utf-8");
+      const archLeido = await fs.readFile(this.archivo, "utf-8");
       const array = JSON.parse(archLeido);
       return array;
     } catch (error) {
@@ -20,7 +20,7 @@ module.exports = class Contenedor {
   async #escribirArchivo(array) {
     // creo un metodo privado para escribir el archivo
     try {
-      await fs.promises.writeFile(this.archivo, JSON.stringify(array, null, 2));
+      await fs.writeFile(this.archivo, JSON.stringify(array, null, 2));
     } catch (error) {
       console.log(error);
     }
@@ -104,4 +104,4 @@ module.exports = class Contenedor {
       console.log(error);
     }
   }
-};
+}
