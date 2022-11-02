@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-export default class ContainerDao {
+module.exports = class ContainerDao {
   constructor(collection) {
     this.collectionName = collection;
     this.collection = mongoose.connection.collection(collection);
@@ -78,4 +78,4 @@ export default class ContainerDao {
       return null;
     }
   }
-}
+};

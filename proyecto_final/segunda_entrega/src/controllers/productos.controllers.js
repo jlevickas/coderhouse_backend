@@ -1,5 +1,4 @@
-const contenedor = require("../contenedor");
-const Productos = new contenedor("db/productos.txt");
+const Productos = require("../models/daos/ProductosDao");
 
 const listarProductos = async (req, res) => {
   try {

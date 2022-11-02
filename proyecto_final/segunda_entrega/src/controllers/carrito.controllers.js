@@ -1,6 +1,5 @@
-const contenedor = require("../contenedor");
-const Carrito = new contenedor("db/carrito.txt");
-const Productos = new contenedor("db/productos.txt");
+const Carrito = require("../models/daos/CarritosDao");
+const Productos = require("../models/daos/ProductosDao");
 
 const crearCarrito = async (req, res) => {
   try {

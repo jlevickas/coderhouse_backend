@@ -1,4 +1,4 @@
-const config = require("../config/config");
+const config = require("../../../config/config");
 const MongoCarritosDao = require("./mongoDB/CarritosDao");
 const FirebaseCarritosDao = require("./firebase/CarritosDao");
 const MysqlCarritosDao = require("./mysql/CarritosDao");
