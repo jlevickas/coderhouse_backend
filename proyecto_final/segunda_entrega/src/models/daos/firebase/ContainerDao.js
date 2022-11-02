@@ -15,7 +15,8 @@ export default class ContainerDao {
 
   async getById(id) {
     try {
-      const result = await this.collection.doc(id).get();
+      console.log(id);
+      const result = await this.collection.where("id" == id.toString()).get();
       return result.data();
     } catch (error) {
       console.log(error);
@@ -57,6 +58,21 @@ export default class ContainerDao {
     try {
       const result = await this.collection.doc(id).delete();
       return result;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  async getNextId() {
+    try {
+      const result = await this.collection.orderBy("id", "desc").limit(1).get();
+
+      if (result.empty) {
+        return 1;
+      } else {
+        return result.docs[0].data().id + 1;
+      }
     } catch (error) {
       console.log(error);
       return null;

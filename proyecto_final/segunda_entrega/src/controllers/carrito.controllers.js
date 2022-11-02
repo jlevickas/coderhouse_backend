@@ -4,9 +4,11 @@ import Productos from "../models/daos/ProductosDao.js";
 const crearCarrito = async (req, res) => {
   try {
     const carrito = {
+      id: Carrito.getNextId(),
+      timestamp: Date.now(),
       productos: [],
     };
-    const id = await Carrito.save(carrito);
+    const id = await Carrito.add(carrito);
     res.json({ id: id });
   } catch (error) {
     console.log(error);
@@ -54,7 +56,7 @@ const agregarProductoAlCarrito = async (req, res) => {
       if (producto) {
         carritoElegido.productos.push(producto);
         await Carrito.deleteById(carritoElegido.id);
-        Carrito.save(carritoElegido);
+        Carrito.add(carritoElegido);
         res.json({ msg: "Producto agregado al carrito" });
       } else {
         res
@@ -85,7 +87,7 @@ const eliminarProductoDelCarrito = async (req, res) => {
           (producto) => producto.id !== idProductoAEliminar
         );
         await Carrito.deleteById(carrito.id);
-        Carrito.save(carrito);
+        Carrito.add(carrito);
         res.json({ msg: "Producto eliminado del carrito" });
       } else {
         res.status(404).json({ error: "Producto no encontrado en carrito" });
