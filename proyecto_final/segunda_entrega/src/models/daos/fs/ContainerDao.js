@@ -26,7 +26,7 @@ export default class Contenedor {
     }
   }
 
-  async save(elemento) {
+  async add(elemento) {
     try {
       const array = (await this.#leerArchivo(this.archivo)) || [];
       let id = 1;

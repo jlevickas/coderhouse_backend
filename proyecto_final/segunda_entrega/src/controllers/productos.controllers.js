@@ -34,7 +34,7 @@ const agregarProducto = async (req, res) => {
       precio: req.body.precio || 0,
       stock: req.body.stock || false,
     };
-    const id = await Productos.save(producto);
+    const id = await Productos.add(producto);
     res.json({ id: id });
   } catch (error) {
     console.log(error);
@@ -67,9 +67,9 @@ const actualizarProducto = async (req, res) => {
 
 const eliminarProducto = async (req, res) => {
   try {
-    const producto = await Productos.getById(parseInt(req.params.id));
+    const producto = await Productos.getById(req.params.id);
     if (producto) {
-      await Productos.deleteById(producto.id);
+      await Productos.deleteById(req.params.id);
       res.json({ id: producto.id });
     } else {
       res.status(404).json({ error: "Producto no encontrado" });

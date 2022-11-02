@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import { mongoUri } from "../../../../config/config.js";
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const connection = mongoose.connection;
 
 export default class ContainerDao {
@@ -7,7 +10,7 @@ export default class ContainerDao {
     this.collection = connection.collection(collection);
   }
 
-  async get(id) {
+  async getById(id) {
     try {
       const result = await this.collection.findOne({ _id: id });
       return result;
@@ -37,7 +40,7 @@ export default class ContainerDao {
     }
   }
 
-  async update(id, data) {
+  async updateById(id, data) {
     try {
       const result = await this.collection.updateOne(
         { _id: id },
@@ -50,29 +53,9 @@ export default class ContainerDao {
     }
   }
 
-  async delete(id) {
+  async deleteById(id) {
     try {
       const result = await this.collection.deleteOne({ _id: id });
-      return result;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
-  async query(options) {
-    try {
-      const result = await this.collection.find(options).toArray();
-      return result;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
-  async deleteAll() {
-    try {
-      const result = await this.collection.deleteMany({});
       return result;
     } catch (error) {
       console.log(error);

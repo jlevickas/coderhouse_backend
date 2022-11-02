@@ -1,4 +1,4 @@
-import carrito from "../models/daos/CarritosDao.js";
+import Carrito from "../models/daos/CarritosDao.js";
 import Productos from "../models/daos/ProductosDao.js";
 
 const crearCarrito = async (req, res) => {

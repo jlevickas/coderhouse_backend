@@ -1,16 +1,22 @@
-import mongoose from "mongoose";
-const connection = mongoose.connection;
+import admin from "firebase-admin";
+import { firebaseServiceAccount } from "../../../../config/config.js";
+
+admin.initializeApp({
+  credential: admin.credential.cert(firebaseServiceAccount),
+});
+
+const db = admin.firestore();
 
 export default class ContainerDao {
   constructor(collection) {
     this.collectionName = collection;
-    this.collection = connection.collection(collection);
+    this.collection = db.collection(collection);
   }
 
-  async get(id) {
+  async getById(id) {
     try {
-      const result = await this.collection.findOne({ _id: id });
-      return result;
+      const result = await this.collection.doc(id).get();
+      return result.data();
     } catch (error) {
       console.log(error);
       return null;
@@ -19,8 +25,8 @@ export default class ContainerDao {
 
   async getAll() {
     try {
-      const result = await this.collection.find().toArray();
-      return result;
+      const result = await this.collection.get();
+      return result.docs.map((doc) => doc.data());
     } catch (error) {
       console.log(error);
       return null;
@@ -29,7 +35,7 @@ export default class ContainerDao {
 
   async add(data) {
     try {
-      const result = await this.collection.insertOne(data);
+      const result = await this.collection.add(data);
       return result;
     } catch (error) {
       console.log(error);
@@ -37,12 +43,9 @@ export default class ContainerDao {
     }
   }
 
-  async update(id, data) {
+  async updateById(id, data) {
     try {
-      const result = await this.collection.updateOne(
-        { _id: id },
-        { $set: data }
-      );
+      const result = await this.collection.doc(id).update(data);
       return result;
     } catch (error) {
       console.log(error);
@@ -50,29 +53,9 @@ export default class ContainerDao {
     }
   }
 
-  async delete(id) {
+  async deleteById(id) {
     try {
-      const result = await this.collection.deleteOne({ _id: id });
-      return result;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
-  async query(options) {
-    try {
-      const result = await this.collection.find(options).toArray();
-      return result;
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
-  async deleteAll() {
-    try {
-      const result = await this.collection.deleteMany({});
+      const result = await this.collection.doc(id).delete();
       return result;
     } catch (error) {
       console.log(error);
