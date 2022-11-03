@@ -12,7 +12,7 @@ export default class CarritosDao extends ContainerDao {
   }
 
   async createTable() {
-    if (!(await myknex.hasTable("carritos"))) {
+    if (!(await myknex.schema.hasTable("carritos"))) {
       try {
         await myknex.schema.createTable("carritos", (table) => {
           table.increments("id");

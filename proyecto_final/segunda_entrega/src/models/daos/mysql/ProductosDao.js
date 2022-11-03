@@ -12,12 +12,17 @@ export default class ProductosDao extends ContainerDao {
   }
 
   async createTable() {
-    if (!(await myknex.hasTable("productos"))) {
+    if (!(await myknex.schema.hasTable("productos"))) {
       try {
         await myknex.schema.createTable("productos", (table) => {
           table.increments("id");
           table.string("timestamp");
-          table.string("productos");
+          table.string("nombre");
+          table.string("descripcion");
+          table.string("codigo");
+          table.string("precio");
+          table.string("stock");
+          table.string("imagen");
         });
         console.log("Table created");
       } catch (error) {

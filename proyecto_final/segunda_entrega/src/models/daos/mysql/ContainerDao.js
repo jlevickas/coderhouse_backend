@@ -89,4 +89,21 @@ export default class ContainerDao {
       console.log(error);
     }
   }
+
+  async getNextId() {
+    try {
+      const result = myknex
+        .from(this.table)
+        .max("id as maxId")
+        .then((res) => {
+          return res;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
