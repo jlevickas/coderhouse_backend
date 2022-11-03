@@ -1,54 +1,62 @@
-{
-  "productos": {
-    "1": {
-      "id": 1,
-      "precio": 549,
-      "timestamp": 1667445142244,
-      "nombre": "iPhone 9",
-      "codigo": "ApI9",
-      "imagen": "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
-      "stock": 94,
-      "descripcion": "An apple mobile which is nothing like apple"
-    },
-    "2": {
-      "imagen": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
-      "nombre": "iPhone X",
-      "descripcion": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ",
-      "precio": 1549,
-      "id": 2,
-      "stock": 943,
-      "codigo": "ApI9",
-      "timestamp": 1667445256753
-    },
-    "3": {
-      "nombre": "Samsung Universe 9",
-      "codigo": "SaU9",
-      "imagen": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
-      "timestamp": 1667445303978,
-      "descripcion": "Samsung's new variant which goes beyond Galaxy to the Universe ",
-      "precio": 1249,
-      "stock": 44,
-      "id": 3
-    },
-    "4": {
-      "precio": 229,
-      "timestamp": 1667445362395,
-      "descripcion": "OPPO F19 is officially announced on April 2021 ",
-      "nombre": "OPPO F19",
-      "codigo": "OF19",
-      "id": 4,
-      "stock": 434,
-      "imagen": "https://dummyjson.com/image/i/products/4/thumbnail.jpg"
-    },
-    "5": {
-      "imagen": "https://dummyjson.com/image/i/products/5/thumbnail.jpg",
-      "nombre": "Huawei P30",
-      "id": 5,
-      "codigo": "HP30",
-      "precio": 549,
-      "descripcion": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK ",
-      "timestamp": 1667445429759,
-      "stock": 23
-    }
+[
+  {
+    "id": 1,
+    "precio": 549,
+    "timestamp": 1667445142244,
+    "nombre": "iPhone 9",
+    "codigo": "ApI9",
+    "imagen": "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
+    "stock": 94,
+    "descripcion": "An apple mobile which is nothing like apple"
+  },
+  {
+    "imagen": "https://dummyjson.com/image/i/products/2/thumbnail.jpg",
+    "nombre": "iPhone X",
+    "descripcion": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ",
+    "precio": 1549,
+    "id": 2,
+    "stock": 943,
+    "codigo": "ApI9",
+    "timestamp": 1667445256753
+  },
+  {
+    "nombre": "Samsung Universe 9",
+    "codigo": "SaU9",
+    "imagen": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
+    "timestamp": 1667445303978,
+    "descripcion": "Samsung's new variant which goes beyond Galaxy to the Universe ",
+    "precio": 1249,
+    "stock": 44,
+    "id": 3
+  },
+  {
+    "precio": 229,
+    "timestamp": 1667445362395,
+    "descripcion": "OPPO F19 is officially announced on April 2021 ",
+    "nombre": "OPPO F19",
+    "codigo": "OF19",
+    "id": 4,
+    "stock": 434,
+    "imagen": "https://dummyjson.com/image/i/products/4/thumbnail.jpg"
+  },
+  {
+    "imagen": "https://dummyjson.com/image/i/products/5/thumbnail.jpg",
+    "nombre": "Huawei P30",
+    "id": 5,
+    "codigo": "HP30",
+    "precio": 549,
+    "descripcion": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK ",
+    "timestamp": 1667445429759,
+    "stock": 23
+  },
+  {
+    "id": 6,
+    "timestamp": 1667450579206,
+    "nombre": "ejemplo",
+    "descripcion": "",
+    "codigo": "",
+    "imagen": "",
+    "precio": 3434,
+    "stock": 0
   }
-}
+]

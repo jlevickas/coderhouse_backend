@@ -56,7 +56,8 @@ export default class Contenedor {
     // leo el archivo, lo parseo y uso .find para buscar el elemento con el id del parametro
     try {
       const array = await this.#leerArchivo(this.archivo);
-      const elemento = await array.find((el) => el.id === id);
+
+      const elemento = await array.find((el) => el.id === parseInt(id));
 
       return elemento;
     } catch (error) {
@@ -74,7 +75,9 @@ export default class Contenedor {
     // uso .filter para crear un array nuevo sin el elemento con el id del parametro. luego reescribo el archivo con el array nuevo
     try {
       const array = await this.#leerArchivo(this.archivo);
-      const arrayNuevo = array.filter((elemento) => elemento.id !== id);
+      const arrayNuevo = array.filter(
+        (elemento) => elemento.id !== parseInt(id)
+      );
 
       this.#escribirArchivo(arrayNuevo);
     } catch (error) {
@@ -92,14 +95,25 @@ export default class Contenedor {
     }
   }
 
-  async getLastId() {
+  async getNextId() {
     try {
       const array = await this.#leerArchivo(this.archivo);
       if (array.length === 0) {
-        return 0;
+        return 1;
       }
       const lastId = array[Object.keys(array).pop()].id;
-      return lastId;
+      return lastId + 1;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async updateById(id, data) {
+    try {
+      const array = await this.#leerArchivo(this.archivo);
+      const index = array.findIndex((el) => el.id === parseInt(id));
+      array[index] = { ...array[index], ...data };
+      this.#escribirArchivo(array);
     } catch (error) {
       console.log(error);
     }
