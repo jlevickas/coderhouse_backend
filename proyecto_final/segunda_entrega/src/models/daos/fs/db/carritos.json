@@ -1,0 +1,56 @@
+{
+  "carritos": {
+    "1": {
+      "productos": [
+        {
+          "precio": 549,
+          "descripcion": "An apple mobile which is nothing like apple",
+          "timestamp": 1667445142244,
+          "codigo": "ApI9",
+          "imagen": "https://dummyjson.com/image/i/products/1/thumbnail.jpg",
+          "id": 1,
+          "stock": 94,
+          "nombre": "iPhone 9"
+        },
+        {
+          "imagen": "https://dummyjson.com/image/i/products/3/thumbnail.jpg",
+          "timestamp": 1667445303978,
+          "precio": 1249,
+          "nombre": "Samsung Universe 9",
+          "id": 3,
+          "codigo": "SaU9",
+          "stock": 44,
+          "descripcion": "Samsung's new variant which goes beyond Galaxy to the Universe "
+        },
+        {
+          "precio": 549,
+          "stock": 23,
+          "descripcion": "Huawei’s re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK ",
+          "imagen": "https://dummyjson.com/image/i/products/5/thumbnail.jpg",
+          "timestamp": 1667445429759,
+          "codigo": "HP30",
+          "id": 5,
+          "nombre": "Huawei P30"
+        }
+      ],
+      "id": 1,
+      "timestamp": 1667445675058
+    },
+    "2": {
+      "timestamp": 1667446172096,
+      "id": 2,
+      "productos": [
+        {
+          "codigo": "OF19",
+          "descripcion": "OPPO F19 is officially announced on April 2021 ",
+          "timestamp": 1667445362395,
+          "id": 4,
+          "nombre": "OPPO F19",
+          "precio": 229,
+          "stock": 434,
+          "imagen": "https://dummyjson.com/image/i/products/4/thumbnail.jpg"
+        }
+      ]
+    }
+  }
+}

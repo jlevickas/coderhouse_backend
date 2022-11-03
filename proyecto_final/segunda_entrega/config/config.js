@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT || 8080;
-const dataBase = process.env.DATA_BASE || "firebase";
+const dataBase = process.env.DATA_BASE || "mongoDB";
 
 const mongoUri =
   process.env.MONGO_URI ||

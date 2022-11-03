@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { mongoUri } from "../../../../config/config.js";
+
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const connection = mongoose.connection;
@@ -12,7 +13,7 @@ export default class ContainerDao {
 
   async getById(id) {
     try {
-      const result = await this.collection.findOne({ _id: id });
+      const result = await this.collection.findOne({ id: parseInt(id) });
       return result;
     } catch (error) {
       console.log(error);
@@ -43,7 +44,7 @@ export default class ContainerDao {
   async updateById(id, data) {
     try {
       const result = await this.collection.updateOne(
-        { _id: id },
+        { id: parseInt(id) },
         { $set: data }
       );
       return result;
@@ -55,8 +56,26 @@ export default class ContainerDao {
 
   async deleteById(id) {
     try {
-      const result = await this.collection.deleteOne({ _id: id });
+      const result = await this.collection.deleteOne({ id: parseInt(id) });
       return result;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  async getNextId() {
+    try {
+      const result = await this.collection
+        .find()
+        .sort({ id: -1 })
+        .limit(1)
+        .toArray();
+      if (result[0]) {
+        return result[0].id + 1;
+      } else {
+        return 1;
+      }
     } catch (error) {
       console.log(error);
       return null;
