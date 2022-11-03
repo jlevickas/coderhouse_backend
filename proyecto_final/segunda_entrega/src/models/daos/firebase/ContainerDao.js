@@ -15,9 +15,12 @@ export default class ContainerDao {
 
   async getById(id) {
     try {
-      console.log(id);
-      const result = await this.collection.where("id" == id.toString()).get();
-      return result.data();
+      const result = await this.collection.doc(id).get();
+      if (result.exists) {
+        return result.data();
+      } else {
+        return null;
+      }
     } catch (error) {
       console.log(error);
       return null;
@@ -36,7 +39,8 @@ export default class ContainerDao {
 
   async add(data) {
     try {
-      const result = await this.collection.add(data);
+      const id = await this.getNextId();
+      const result = await this.collection.doc(id.toString()).set(data);
       return result;
     } catch (error) {
       console.log(error);

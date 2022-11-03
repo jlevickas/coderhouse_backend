@@ -72,14 +72,10 @@ const actualizarProducto = async (req, res) => {
 
 const eliminarProducto = async (req, res) => {
   try {
-    const producto = await Productos.getById(req.params.id);
-    if (producto) {
-      await Productos.deleteById(req.params.id);
-      res.json({ id: producto.id });
-    } else {
-      res.status(404).json({ error: "Producto no encontrado" });
-    }
+    await Productos.deleteById(req.params.id);
+    res.json({ id: req.params.id });
   } catch (error) {
+    res.status(404).json({ error: "Producto no encontrado" });
     console.log(error);
   }
 };
