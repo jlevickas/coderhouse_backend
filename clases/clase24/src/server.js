@@ -34,14 +34,6 @@ app.use(
 );
 app.use("/", authRouter);
 
-/* authRouter.use(async (req, res, next) => {
-    if (req.session.username) {
-        next();
-  } else {
-    res.redirect("/login");
-  }
-}); */
-
 //------------------- NORMALIZR -------------------------
 
 import { normalize, schema } from "normalizr";
