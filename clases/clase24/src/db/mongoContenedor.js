@@ -8,7 +8,6 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-
 export default class mongoContenedor {
   constructor(collection) {
     this.collectionName = collection;
@@ -28,7 +27,7 @@ export default class mongoContenedor {
   async add(data) {
     try {
       const id = await this.getNextId();
-      const result = await this.collection.insertOne({data, id});
+      const result = await this.collection.insertOne({ data, id });
       return result;
     } catch (error) {
       console.log(error);
@@ -46,4 +45,4 @@ export default class mongoContenedor {
       return null;
     }
   }
-};
+}
