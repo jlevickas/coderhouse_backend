@@ -2,10 +2,11 @@ import express from "express";
 import { Server as HttpServer } from "http";
 import { Server as Socket } from "socket.io";
 import mongoContenedor from "./db/mongoContenedor.js";
-import authRouter from "./routes/auth.routes.js";
+import authRouter from "./routes/session.routes.js";
 import dotenv from "dotenv";
 import MongoStore from "connect-mongo";
 import session from "express-session";
+import sessionMiddleware from "./middleware/session.middleware.js";
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   })
 );
+//app.use(sessionMiddleware);
 app.use("/", authRouter);
 
 //------------------- NORMALIZR -------------------------
