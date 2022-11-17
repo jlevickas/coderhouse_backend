@@ -1,8 +1,12 @@
 const sessionMiddleware = async (req, res, next) => {
+  if (req.path === "/login") {
+    next();
+    return;
+  }
   const username = await req.session.username;
   if (!username) {
-    console.log("No hay usuario logueado");
-    return res.redirect("login-form.html");
+    await res.redirect("/login");
+    return
   }
   next();
 };

@@ -2,11 +2,12 @@ import express from "express";
 import { Server as HttpServer } from "http";
 import { Server as Socket } from "socket.io";
 import mongoContenedor from "./db/mongoContenedor.js";
-import authRouter from "./routes/session.routes.js";
+import sessionRouter from "./routes/session.routes.js";
 import dotenv from "dotenv";
 import MongoStore from "connect-mongo";
 import session from "express-session";
 import sessionMiddleware from "./middleware/session.middleware.js";
+import handlebars from "express-handlebars";
 
 dotenv.config();
 
@@ -14,12 +15,19 @@ const app = express();
 const httpServer = new HttpServer(app);
 const io = new Socket(httpServer);
 
+app.engine(
+  "hbs",
+  handlebars.engine({
+      extname: ".hbs",
+      defaultLayout: 'index.hbs',
+  })
+)
+app.set("view engine", "hbs")
+app.set("views", "./views")
+
+
 const productosApi = new mongoContenedor("productos");
 const mensajesApi = new mongoContenedor("mensajes");
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use("/", express.static("public"));
 
 app.use(
   session({
@@ -31,10 +39,16 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
-  })
+  })  
 );
-//app.use(sessionMiddleware);
-app.use("/", authRouter);
+
+app.use(sessionMiddleware);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/", express.static("public"));
+
+
+app.use("/", sessionRouter);
 
 //------------------- NORMALIZR -------------------------
 

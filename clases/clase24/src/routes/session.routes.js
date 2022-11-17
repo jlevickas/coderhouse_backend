@@ -6,11 +6,11 @@ import {
   logout,
 } from "../controllers/session.controller.js";
 
-const authRouter = Router();
+const sessionRouter = Router();
 
-authRouter.get("/login", loginForm);
-authRouter.post("/login", login);
-authRouter.get("/logout", logout);
-authRouter.get("/logged-user", loggedUser);
+sessionRouter.get("/login", loginForm);
+sessionRouter.post("/login", login);
+sessionRouter.get("/logout", logout);
+sessionRouter.get("/logged-user", loggedUser);
 
-export default authRouter;
+export default sessionRouter;

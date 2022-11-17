@@ -8,7 +8,7 @@ const login = async (req, res) => {
 };
 
 const loginForm = async (req, res) => {
-  return res.redirect("login-form.html");
+  return res.render("login");
 };
 
 const loggedUser = async (req, res) => {
@@ -19,10 +19,7 @@ const logout = async (req, res) => {
   const username = await req.session.username;
   await req.session.destroy();
 
-  await res.write(`Hasta luego, ${username}.`);
-  setTimeout(() => {
-    res.redirect("/");
-  }, 2000);
+  await res.render("logout-screen", { username });
 };
 
 export { login, loginForm, loggedUser, logout };
