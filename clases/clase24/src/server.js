@@ -23,7 +23,7 @@ app.engine(
   })
 )
 app.set("view engine", "hbs")
-app.set("views", "./views")
+app.set("views", "./src/views")
 
 
 const productosApi = new mongoContenedor("productos");
@@ -38,7 +38,7 @@ app.use(
     }),
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    cookie: { maxAge: 1000 * 60 * 10 }, // 10 minutos
   })  
 );
 
