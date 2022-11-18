@@ -1,7 +1,12 @@
-const login = async (req, res) => {
-  const username = await req.body.username;
+import mongoContenedor from "../db/mongoContenedor.js";
+import User from "../models/User.js";
 
-  req.session.username = username;
+const userApi = new mongoContenedor("users");
+
+const login = async (req, res) => {
+  const email = await req.body.email;
+
+  req.session.email = email;
   await req.session.save();
 
   return res.redirect("/");
@@ -12,19 +17,28 @@ const loginForm = async (req, res) => {
 };
 
 const loggedUser = async (req, res) => {
-  return res.send(req.session.username);
+  return res.send(req.session.email);
 };
 
 const logout = async (req, res) => {
-  const username = await req.session.username;
+  const email = await req.session.email;
   await req.session.destroy();
 
-  await res.render("logout-screen", { username });
+  await res.render("logout-screen", { email });
 };
 
-const signup = async (req, res) => {
+const registerForm = async (req, res) => {
+  return res.render("register");
+};
+
+const register = async (req, res) => {
   const email = await req.body.email;
   const password = await req.body.password;
+
+  const user = new User({ email, password });
+  await userApi.add(user);
+
+  return res.redirect("/login");
 };
 
-export { login, loginForm, loggedUser, logout, signup };
+export { login, loginForm, loggedUser, logout, register, registerForm };

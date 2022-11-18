@@ -3,8 +3,8 @@ const sessionMiddleware = async (req, res, next) => {
     next();
     return;
   }
-  const username = await req.session.username;
-  if (!username) {
+  const userEmail = await req.session.email;
+  if (!userEmail) {
     await res.redirect("/login");
     return
   }
