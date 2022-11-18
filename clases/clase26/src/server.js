@@ -1,7 +1,7 @@
 import express from "express";
 import { Server as HttpServer } from "http";
 import handlebars from "express-handlebars";
-import initSocketIO from "./utils/socketConnect.js";
+import initSocketIO from "./utils/socket.io.js";
 import sessionMiddleware from "./middleware/session.middleware.js";
 import sessionHandler from "./utils/sessionHandler.js";
 import sessionRouter from "./routes/session.routes.js";
