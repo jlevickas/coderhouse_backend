@@ -1,5 +1,7 @@
 import mongoContenedor from "../db/mongoContenedor.js";
 import User from "../models/User.js";
+import bcrypt from 'bcrypt';
+
 
 const userApi = new mongoContenedor("users");
 
@@ -35,10 +37,16 @@ const register = async (req, res) => {
   const email = await req.body.email;
   const password = await req.body.password;
 
-  const user = new User({ email, password });
+  const encryptedPassword = await bcrypt.hash(password, 10);
+  console.log(encryptedPassword);
+
+  const user = new User({ email, encryptedPassword });
+  console.log(user)
   await userApi.add(user);
 
   return res.redirect("/login");
+
+  //TODO: CAMBIAR CONTENEDOR POR MODELOS
 };
 
 export { login, loginForm, loggedUser, logout, register, registerForm };

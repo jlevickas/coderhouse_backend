@@ -1,5 +1,5 @@
 const sessionMiddleware = async (req, res, next) => {
-  if (req.path === "/login") {
+  if (req.path === "/login" || req.path === "/register" ) {
     next();
     return;
   }
