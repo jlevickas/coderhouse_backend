@@ -22,4 +22,9 @@ const logout = async (req, res) => {
   await res.render("logout-screen", { username });
 };
 
-export { login, loginForm, loggedUser, logout };
+const signup = async (req, res) => {
+  const email = await req.body.email;
+  const password = await req.body.password;
+};
+
+export { login, loginForm, loggedUser, logout, signup };
