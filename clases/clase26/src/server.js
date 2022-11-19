@@ -6,6 +6,7 @@ import sessionMiddleware from "./middleware/session.middleware.js";
 import sessionHandler from "./utils/sessionHandler.js";
 import sessionRouter from "./routes/session.routes.js";
 import productosRouter from "./routes/productos.routes.js";
+import mongoConnection from "./db/mongodbConnection.js";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -13,6 +14,8 @@ dotenv.config();
 const app = express();
 const httpServer = new HttpServer(app);
 initSocketIO(httpServer);
+
+mongoConnection();
 
 app.engine(
   "hbs",

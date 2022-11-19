@@ -1,9 +1,9 @@
 import { Server as Socket } from "socket.io";
-import mongoContenedor from "../db/mongoContenedor.js";
 import normalizarMensajes from "./messageNormalizer.js";
+import Product from "../models/Product.js";
+import Message from "../models/Message.js";
 
-const mensajesApi = new mongoContenedor("mensajes");
-const productosApi = new mongoContenedor("productos");
+//const productosApi = new mongoContenedor("productos");
 
 const initSocketIO = (server) => {
   const io = new Socket(server);
@@ -11,24 +11,28 @@ const initSocketIO = (server) => {
   io.on("connection", async (socket) => {
     console.log("Nuevo cliente conectado!");
 
-    socket.emit("productos", await productosApi.getAll());
+    socket.emit("productos", await Product.find());
 
     socket.on("update", async (producto) => {
-      await productosApi.add(producto);
-      io.sockets.emit("productos", await productosApi.getAll());
+      const product = new Product(producto);
+      await product.save();
+      io.sockets.emit("productos", await Product.find());
     });
 
     socket.emit("mensajes", await listarMensajesNormalizados());
 
-    socket.on("nuevoMensaje", async (mensaje) => {
-      mensaje.fyh = new Date().toLocaleString();
-      await mensajesApi.add(mensaje);
+    socket.on("nuevoMensaje", async (data) => {
+      const mensaje = { data };
+      console.log(mensaje);
+      const mensajeNuevo = new Message(mensaje);
+      mensajeNuevo.id = (await Message.countDocuments()) + 1;
+      mensajeNuevo.save();
       io.sockets.emit("mensajes", await listarMensajesNormalizados());
     });
   });
 
   const listarMensajesNormalizados = async () => {
-    const mensajes = await mensajesApi.getAll();
+    const mensajes = await Message.find().lean();
     const normalizedMessages = normalizarMensajes({ id: "mensajes", mensajes });
     console.log(normalizedMessages.entities.posts);
     return normalizedMessages;

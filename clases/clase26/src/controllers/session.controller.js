@@ -1,12 +1,20 @@
-import mongoContenedor from "../db/mongoContenedor.js";
 import User from "../models/User.js";
-import bcrypt from 'bcrypt';
-
-
-const userApi = new mongoContenedor("users");
 
 const login = async (req, res) => {
   const email = await req.body.email;
+  const password = await req.body.password;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.render("login", { error: "Usuario no encontrado" });
+  }
+
+  const correctPassword = await user.comparePassword(password);
+
+  if (!correctPassword) {
+    return res.render("login", { error: "Contraseña incorrecta" });
+  }
 
   req.session.email = email;
   await req.session.save();
@@ -37,16 +45,10 @@ const register = async (req, res) => {
   const email = await req.body.email;
   const password = await req.body.password;
 
-  const encryptedPassword = await bcrypt.hash(password, 10);
-  console.log(encryptedPassword);
-
-  const user = new User({ email, encryptedPassword });
-  console.log(user)
-  await userApi.add(user);
+  const user = new User({ email, password });
+  await user.save();
 
   return res.redirect("/login");
-
-  //TODO: CAMBIAR CONTENEDOR POR MODELOS
 };
 
 export { login, loginForm, loggedUser, logout, register, registerForm };
