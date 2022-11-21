@@ -1,5 +1,7 @@
 import express from "express";
 import { Server as HttpServer } from "http";
+import passport from "./utils/passportLocalAuth.js";
+
 import handlebars from "express-handlebars";
 import initSocketIO from "./utils/socketConnect.js";
 import sessionMiddleware from "./middleware/session.middleware.js";
@@ -28,6 +30,10 @@ app.set("view engine", "hbs");
 app.set("views", "./src/views");
 
 app.use(sessionHandler);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(sessionMiddleware);
 
 app.use(express.json());
@@ -37,7 +43,6 @@ app.use("/", express.static("public"));
 app.use("/", sessionRouter);
 app.use("/api", productosRouter);
 
-//--------------------------------------------
 
 const PORT = process.env.PORT || 8080;
 const connectedServer = httpServer.listen(PORT, () => {

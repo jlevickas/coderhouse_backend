@@ -11,7 +11,8 @@ const sessionHandler = session({
     mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
   }),
   resave: true,
-  saveUninitialized: true,
+  saveUninitialized: false,
+  rolling: true,
   cookie: { maxAge: 1000 * 60 * 10 }, // 10 minutos
 });
 
