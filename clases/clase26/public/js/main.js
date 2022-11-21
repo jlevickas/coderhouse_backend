@@ -79,18 +79,14 @@ messageForm.addEventListener('submit', e => {
 socket.on('mensajes', normalizedMessages => {
 
     let normalizedMessagesSize = JSON.stringify(normalizedMessages).length
-    console.log(normalizedMessages, normalizedMessagesSize);
 
     let denormalizedMessages = normalizr.denormalize(normalizedMessages.result, schemaMensajes, normalizedMessages.entities)
 
     let denormalizedMessagesSize = JSON.stringify(denormalizedMessages).length
-    console.log(denormalizedMessages, denormalizedMessagesSize);
 
     let compressionPercentage = parseInt((normalizedMessagesSize * 100) / denormalizedMessagesSize)
-    console.log(`Porcentaje de compresión ${compressionPercentage}%`)
     document.getElementById('compression-info').innerText = compressionPercentage
 
-    console.log(denormalizedMessages.mensajes);
     const html = writeMessageInHtml(denormalizedMessages.mensajes)
     document.getElementById('mensajes').innerHTML = html;
 })
