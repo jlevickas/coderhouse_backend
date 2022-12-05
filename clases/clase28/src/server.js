@@ -43,9 +43,8 @@ app.use("/", express.static("public"));
 
 app.use("/", sessionRouter);
 app.use("/api", productosRouter);
-app.use("/info", infoRouter)
+app.use("/info", infoRouter);
 app.use("/api/randoms", randomsRouter);
-
 
 const connectedServer = httpServer.listen(PORT, () => {
   console.log(`Servidor http escuchando en el puerto ${PORT}`);
